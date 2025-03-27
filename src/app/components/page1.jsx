@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { z } from "zod";
 
-export default function Page1({ back, next }) {
+export default function Page1({ back, next , page }) {
   const [form, setForm] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("userForm");
@@ -67,7 +67,16 @@ export default function Page1({ back, next }) {
       [name]: name === "number" ? (value ? parseInt(value, 10) : "") : value,
     }));
   };
+  useEffect(() => {
+    localStorage.setItem("userForm", JSON.stringify(form));
+  }, [form]);
 
+  useEffect(() => {
+    const savedForm = localStorage.getItem("userForm");
+    if (savedForm) {
+      setForm(JSON.parse(savedForm));
+    }
+  }, [page]);
   useEffect(() => {
     localStorage.setItem("userForm1", JSON.stringify(form));
     console.log("setelj bnaa");

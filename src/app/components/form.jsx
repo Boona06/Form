@@ -71,7 +71,7 @@ export default function Form({ next, page }) {
   }, [form]);
 
   useEffect(() => {
-    const savedForm = localStorage.getItem("userForm");
+    const savedForm = localStorage.getItem("userForm1");
     if (savedForm) {
       setForm(JSON.parse(savedForm));
     }
